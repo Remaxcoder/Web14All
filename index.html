@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web14All - Professionelt Webdesign & Programmering</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Loader -->
+        <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
+            <div class="loader-content">
+                <!-- Custom Block Animation Loader -->
+                <div class="text-animation-container relative h-24 overflow-hidden">
+                    <!-- Single block animation -->
+                    <div class="text-block text-primary-600 text-7xl font-bold transform translate-x-full">Web14All</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <a href="#" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-primary-600">Web14All</span>
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="#services" class="hover:text-primary-600 transition">Services</a>
+                        <a href="#examples" class="hover:text-primary-600 transition">Eksempler</a>
+                        <a href="#why-choose" class="hover:text-primary-600 transition">Hvorfor vælge os</a>
+                        <a href="#pricing" class="hover:text-primary-600 transition">Priser</a>
+                    </nav>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <svg id="sun-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg id="moon-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    
+                    <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition shadow-md hidden md:block">
+                        Kontakt os
+                    </a>
+                    
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden container mx-auto px-4 py-2 pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="#services" class="hover:text-primary-600 transition py-2">Services</a>
+                    <a href="#examples" class="hover:text-primary-600 transition py-2">Eksempler</a>
+                    <a href="#why-choose" class="hover:text-primary-600 transition py-2">Hvorfor vælge os</a>
+                    <a href="#pricing" class="hover:text-primary-600 transition py-2">Priser</a>
+                    <a href="#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition shadow-md text-center">
+                        Kontakt os
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Hero Section -->
+            <section id="hero" class="relative overflow-hidden bg-gray-50 dark:bg-gray-900 py-16 md:py-24">
+                <div class="container mx-auto px-4 relative z-10">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-500 opacity-0 transform translate-y-8">
+                            Professionelt Webdesign & Programmering
+                        </h1>
+                        <p id="hero-subtitle" class="text-lg md:text-xl mb-8 text-gray-600 dark:text-gray-300 opacity-0 transform translate-y-8">
+                            Skræddersyede løsninger til din virksomhed med moderne design og avancerede funktioner.
+                        </p>
+                        <div id="hero-cta" class="space-x-4 opacity-0 transform translate-y-8">
+                            <a href="#contact" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-lg font-medium transition shadow-lg hover:shadow-xl">
+                                Kontakt os i dag
+                            </a>
+                            <a href="#examples" class="inline-block bg-white dark:bg-gray-800 text-primary-600 hover:text-primary-700 px-6 py-3 rounded-full text-lg font-medium transition shadow-lg hover:shadow-xl border border-gray-200 dark:border-gray-700">
+                                Se vores arbejde
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Background elements -->
+                <div class="absolute inset-0 overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-900 dark:to-gray-800 opacity-50"></div>
+                    <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary-400 dark:bg-primary-800 rounded-full opacity-10 blur-3xl"></div>
+                    <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-primary-400 dark:bg-gray-700 rounded-full opacity-10 blur-3xl"></div>
+                </div>
+            </section>
+
+            <section id="services" class="py-16 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-3xl font-bold mb-4 reveal-element">Vores Services</h2>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            Vi skaber digitale løsninger, der giver din virksomhed en konkurrencemæssig fordel.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-laptop-code text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Webdesign</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Moderne, responsive hjemmesider med fokus på brugeroplevelse og konvertering.
+                            </p>
+                        </div>
+                        
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.2">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-mobile-alt text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Mobilvenlige Løsninger</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Websteder der fungerer perfekt på alle enheder, fra mobil til desktop.
+                            </p>
+                        </div>
+                        
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.4">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-code text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Webapplikationer</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Skræddersyede webapplikationer der løser konkrete forretningsbehov.
+                            </p>
+                        </div>
+                        
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.6">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-paint-brush text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Brugercentreret design der forbedrer brugeroplevelsen og øger konverteringsraten.
+                            </p>
+                        </div>
+                        
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.8">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-search text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">SEO Optimering</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Forbedring af din hjemmesides synlighed i søgemaskiner.
+                            </p>
+                        </div>
+                        
+                        <div class="service-card bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="1">
+                            <div class="w-14 h-14 bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-server text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Hosting & Vedligeholdelse</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Sikker hosting og løbende vedligeholdelse af din hjemmeside.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Examples Section -->
+            <section id="examples" class="py-16 bg-gray-50 dark:bg-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-3xl font-bold mb-4 reveal-element">Live Eksempler</h2>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            Se nogle af vores seneste projekter og oplev kvaliteten af vores arbejde.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- TrngTrkr Example -->
+                        <div class="example-card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element">
+                            <div class="text-primary-600 text-3xl mb-4 flex justify-center">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">TrngTrkr</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">
+                                Træningssporing med brugervenligt interface og responsivt design.
+                            </p>
+                            <div class="flex flex-wrap gap-2 justify-center mb-4">
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">HTML</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">CSS</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">JavaScript</span>
+                            </div>
+                            <a href="https://remaxcoder.github.io/TrngTrkr/" target="_blank" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition" title="Besøg siden">
+                                <i class="fas fa-external-link-alt mr-2"></i>Besøg projektet
+                            </a>
+                        </div>
+                        
+                        <!-- Example 2 -->
+                        <div class="example-card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.2">
+                            <div class="text-primary-600 text-3xl mb-4 flex justify-center">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">E-commerce Platform</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">
+                                Moderne webshop med avanceret betalingsintegrationer og produktfiltrering.
+                            </p>
+                            <div class="flex flex-wrap gap-2 justify-center mb-4">
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">React</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">Node.js</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">MongoDB</span>
+                            </div>
+                            <a href="#" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition" title="Besøg siden">
+                                <i class="fas fa-external-link-alt mr-2"></i>Besøg projektet
+                            </a>
+                        </div>
+                        
+                        <!-- Example 3 -->
+                        <div class="example-card bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.4">
+                            <div class="text-primary-600 text-3xl mb-4 flex justify-center">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2 text-center">Portfolio Website</h3>
+                            <p class="text-gray-600 dark:text-gray-300 mb-4 text-center">
+                                Elegant portfolio-hjemmeside med animationer og moderne design.
+                            </p>
+                            <div class="flex flex-wrap gap-2 justify-center mb-4">
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">Vue.js</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">GSAP</span>
+                                <span class="text-xs bg-gray-100 dark:bg-gray-600 px-2 py-1 rounded">Tailwind CSS</span>
+                            </div>
+                            <a href="#" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition" title="Besøg siden">
+                                <i class="fas fa-external-link-alt mr-2"></i>Besøg projektet
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="why-choose" class="py-16 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-3xl font-bold mb-4 reveal-element">Hvorfor vælge Web14All?</h2>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            Vi skiller os ud fra mængden med vores kvalitet, pris og kundefokus.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="why-card text-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element">
+                            <div class="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-hand-holding-heart text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Skræddersyede Løsninger</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Vi skaber unikke løsninger, der matcher præcis dine behov og ønsker.
+                            </p>
+                        </div>
+                        
+                        <div class="why-card text-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.2">
+                            <div class="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-tags text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Superlav Pris</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Professionel kvalitet fra kun 499,79 kr til 2.499,79 kr.
+                            </p>
+                        </div>
+                        
+                        <div class="why-card text-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.4">
+                            <div class="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-laptop-code text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Moderne Design</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Animationer og moderne UI der giver din hjemmeside et professionelt udtryk.
+                            </p>
+                        </div>
+                        
+                        <div class="why-card text-center bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition reveal-element" data-delay="0.6">
+                            <div class="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-mobile-alt text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Responsivt Design</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Hjemmesider der fungerer perfekt på mobil, tablet og desktop.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center reveal-element" data-delay="0.8">
+                        <div class="max-w-2xl mx-auto p-6 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-md">
+                            <div class="w-16 h-16 mx-auto bg-primary-100 dark:bg-gray-700 text-primary-600 rounded-full flex items-center justify-center mb-4">
+                                <i class="fas fa-paint-brush text-2xl"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-2">Gratis Design-Udkast</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Vi tilbyder gratis design-udkast, som du kan se via online møde eller screenshots, så du kan få et indtryk af dit kommende projekt.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Pricing Section -->
+            <section id="pricing" class="py-16 bg-gray-50 dark:bg-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-3xl font-bold mb-4 reveal-element">Prisoversigt</h2>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            Vælg den pakke, der passer bedst til dine behov.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Basic Package -->
+                        <div class="pricing-card bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden reveal-element">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-xl font-bold mb-1">Start</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Perfekt til små virksomheder</p>
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold">499,79 kr</span>
+                                    <span class="text-gray-600 dark:text-gray-400 ml-2">/projekt</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Responsivt design</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Op til 3 sider</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Kontaktformular</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Basale animationer</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-gray-400 dark:text-gray-600">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-400 dark:text-gray-500">Avancerede funktioner</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-gray-400 dark:text-gray-600">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-400 dark:text-gray-500">SEO-optimering</span>
+                                    </li>
+                                </ul>
+                                <div class="mt-8">
+                                    <a href="#contact" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-full transition shadow-md">
+                                        Vælg pakke
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pro Package -->
+                        <div class="pricing-card bg-white dark:bg-gray-900 rounded-2xl shadow-xl transform scale-105 md:scale-105 z-10 reveal-element" data-delay="0.2">
+                            <div class="absolute top-0 right-0 bg-primary-600 text-white py-1 px-4 rounded-bl-lg text-sm">
+                                Populær
+                            </div>
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-xl font-bold mb-1">Pro</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Ideel til voksende virksomheder</p>
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold">1.499,79 kr</span>
+                                    <span class="text-gray-600 dark:text-gray-400 ml-2">/projekt</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Responsivt design</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Op til 8 sider</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Avanceret kontaktformular</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Flydende animationer</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Basis SEO-optimering</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-gray-400 dark:text-gray-600">
+                                            <i class="fas fa-times"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-400 dark:text-gray-500">E-commerce funktioner</span>
+                                    </li>
+                                </ul>
+                                <div class="mt-8">
+                                    <a href="#contact" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-full transition shadow-md">
+                                        Vælg pakke
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Full Package -->
+                        <div class="pricing-card bg-white dark:bg-gray-900 rounded-2xl shadow-md hover:shadow-xl transition overflow-hidden reveal-element" data-delay="0.4">
+                            <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                                <h3 class="text-xl font-bold mb-1">Full</h3>
+                                <p class="text-gray-600 dark:text-gray-400 mb-4">Til virksomheder med store behov</p>
+                                <div class="flex items-end">
+                                    <span class="text-4xl font-bold">2.499,79 kr</span>
+                                    <span class="text-gray-600 dark:text-gray-400 ml-2">/projekt</span>
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Responsivt design</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Ubegrænset antal sider</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Avancerede funktioner</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Premium animationer</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">Fuld SEO-optimering</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-5 h-5 text-primary-600">
+                                            <i class="fas fa-check"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">E-commerce integration</span>
+                                    </li>
+                                </ul>
+                                <div class="mt-8">
+                                    <a href="#contact" class="block w-full text-center bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-full transition shadow-md">
+                                        Vælg pakke
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-12 text-center reveal-element" data-delay="0.6">
+                        <a href="pricing-details.html" class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white px-6 py-4 rounded-full text-lg font-medium transition shadow-lg hover:shadow-xl">
+                            <i class="fas fa-table mr-2"></i>
+                            Sammenlign priser og ydelser
+                        </a>
+                        <p class="mt-3 text-sm text-gray-500 dark:text-gray-400">Se en detaljeret oversigt over alle priser og ydelser</p>
+                    </div>
+                </div>
+            </section>
+            <section id="contact" class="py-16 bg-white dark:bg-gray-900">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h2 class="text-3xl font-bold mb-4 reveal-element">Kontakt Os</h2>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            Tag første skridt mod din nye professionelle hjemmeside.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="reveal-element">
+                            <div class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md">
+                                <h3 class="text-xl font-bold mb-4">Kontaktinformation</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-6 h-6 text-primary-600">
+                                            <i class="fas fa-envelope"></i>
+                                        </div>
+                                        <a href="mailto:aziz@web14all.dk" class="ml-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-white transition">aziz@web14all.dk</a>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-6 h-6 text-primary-600">
+                                            <i class="fas fa-phone"></i>
+                                        </div>
+                                        <a href="tel:+4552742988" class="ml-3 text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-white transition">+45 52 74 29 88</a>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-6 h-6 text-primary-600">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </div>
+                                        <span class="ml-3 text-gray-600 dark:text-gray-300">København, Danmark</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <div class="flex-shrink-0 w-6 h-6 text-primary-600">
+                                            <i class="fas fa-clock"></i>
+                                        </div>
+                                        <div class="ml-3 text-gray-600 dark:text-gray-300">
+                                            <div>Telefontid:</div>
+                                            <div>Hverdage: 15:00 - 20:00</div>
+                                            <div>Weekend: 12:00 - 20:00</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                
+                                <div class="mt-4 text-gray-600 dark:text-gray-300 text-sm bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                                    <p>Du er altid velkommen til at sende en besked eller mail når som helst, men svar vil primært blive sendt i ovenstående tidsrum.</p>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <h4 class="text-lg font-medium mb-3">Følg os</h4>
+                                    <div class="flex space-x-4">
+                                        <a href="#" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white transition">
+                                            <i class="fab fa-facebook-f text-xl"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white transition">
+                                            <i class="fab fa-twitter text-xl"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white transition">
+                                            <i class="fab fa-instagram text-xl"></i>
+                                        </a>
+                                        <a href="#" class="text-gray-600 hover:text-primary-600 dark:text-gray-300 dark:hover:text-white transition">
+                                            <i class="fab fa-linkedin-in text-xl"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div class="mt-8">
+                                    <a href="https://calendly.com" target="_blank" class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-full transition shadow-md">
+                                        <i class="far fa-calendar-alt mr-2"></i>
+                                        Book et møde
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="reveal-element" data-delay="0.2">
+                            <form class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 shadow-md">
+                                <h3 class="text-xl font-bold mb-4">Send os en besked</h3>
+                                
+                                <div class="mb-4">
+                                    <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Navn</label>
+                                    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Email</label>
+                                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="subject" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Emne</label>
+                                    <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Besked</label>
+                                    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white dark:bg-gray-600 text-gray-900 dark:text-white"></textarea>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="rounded border-gray-300 text-primary-600 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50">
+                                        <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">Jeg accepterer <a href="#" class="text-primary-600 hover:underline">privatlivspolitikken</a></span>
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-full transition shadow-md">
+                                    Send besked
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Footer -->
+            <footer class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white pt-12 pb-8 transition-colors duration-300">
+                <div class="container mx-auto px-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+                        <div>
+                            <h3 class="text-xl font-bold mb-4">Web14All</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-4">
+                                Professionelt webdesign og programmering til overkommelige priser.
+                            </p>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-white transition">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-white transition">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-white transition">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-white transition">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Links</h3>
+                            <ul class="space-y-2">
+                                <li class="mb-2"><a href="#services" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Services</a></li>
+                                <li class="mb-2"><a href="#examples" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Eksempler</a></li>
+                                <li class="mb-2"><a href="#why-choose" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Hvorfor os</a></li>
+                                <li class="mb-2"><a href="#pricing" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Priser</a></li>
+                                <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Kontakt</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4">Services</h3>
+                            <ul class="space-y-2">
+                                <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Webdesign</a></li>
+                                <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Webapplikationer</a></li>
+                                <li class="mb-2"><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Instagram</a></li>
+                                <li class="mb-2"><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Facebook</a></li>
+                                <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">LinkedIn</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-4 text-gray-800 dark:text-white">Kontakt</h3>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-5 h-5 text-primary-600 dark:text-primary-500">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <a href="mailto:aziz@web14all.dk" class="ml-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">aziz@web14all.dk</a>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-5 h-5 text-primary-600 dark:text-primary-500">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <a href="tel:+4552742988" class="ml-2 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">+45 52 74 29 88</a>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-5 h-5 text-primary-600 dark:text-primary-500">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <span class="ml-2 text-gray-600 dark:text-gray-400">Hverdage: 15:00 - 20:00<br>Weekend: 12:00 - 20:00</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="flex-shrink-0 w-5 h-5 text-primary-600 dark:text-primary-500">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <span class="ml-2 text-gray-600 dark:text-gray-400">København, Danmark</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="border-t border-gray-200 dark:border-gray-800 pt-8">
+                        <div class="flex flex-col md:flex-row justify-between items-center">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 md:mb-0">
+                                &copy; 2025 Web14All. Alle rettigheder forbeholdes.
+                            </p>
+                            <div class="flex space-x-6">
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white text-sm transition">Privatlivspolitik</a>
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white text-sm transition">Vilkår og betingelser</a>
+                                <a href="#" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white text-sm transition">Cookie-politik</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+                        
+        </main>
+    </div>
+
+    <!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

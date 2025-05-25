@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detaljeret Prisoversigt - Web14All</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 transition-colors duration-300">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Loader -->
+        <div id="loader" class="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900">
+            <div class="loader-content">
+                <!-- Custom Pricing Animation Loader -->
+                <div class="pricing-animation-container relative overflow-visible">
+                    <!-- Content container for combined animation -->
+                    <div class="pricing-content-wrapper">
+                        <!-- Main content element -->
+                        <div class="pricing-main-element text-primary-600 text-7xl font-bold transform translate-x-full">Web14All</div>
+                        <!-- Text label element -->
+                        <div class="pricing-text-label text-gray-600 dark:text-gray-400 text-4xl font-medium transform translate-x-full opacity-0 mt-2">Pris Detaljer</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/90 backdrop-blur-md shadow-sm">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-primary-600">Web14All</span>
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <nav class="hidden md:flex space-x-6">
+                        <a href="index.html#services" class="hover:text-primary-600 transition">Services</a>
+                        <a href="index.html#examples" class="hover:text-primary-600 transition">Eksempler</a>
+                        <a href="index.html#why-choose" class="hover:text-primary-600 transition">Hvorfor vælge os</a>
+                        <a href="index.html#pricing" class="hover:text-primary-600 transition">Priser</a>
+                        <a href="index.html#contact" class="hover:text-primary-600 transition">Kontakt</a>
+                    </nav>
+                    
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <svg id="sun-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg id="moon-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    
+                    <a href="index.html#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition shadow-md hidden md:block">
+                        Kontakt os
+                    </a>
+                    
+                    <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobile-menu" class="hidden md:hidden container mx-auto px-4 py-2 pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="index.html#services" class="hover:text-primary-600 transition py-2">Services</a>
+                    <a href="index.html#examples" class="hover:text-primary-600 transition py-2">Eksempler</a>
+                    <a href="index.html#why-choose" class="hover:text-primary-600 transition py-2">Hvorfor vælge os</a>
+                    <a href="index.html#pricing" class="hover:text-primary-600 transition py-2">Priser</a>
+                    <a href="index.html#contact" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition shadow-md text-center">
+                        Kontakt os
+                    </a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Detailed Pricing Section -->
+            <section id="detailed-pricing" class="py-16 bg-gray-50 dark:bg-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="text-center max-w-3xl mx-auto mb-12">
+                        <h1 class="text-4xl font-bold mb-4 reveal-element">Detaljeret Prisoversigt</h1>
+                        <p class="text-gray-600 dark:text-gray-300 reveal-element">
+                            En grundig sammenligning af vores prispakker med alle inkluderede features
+                        </p>
+                    </div>
+                    
+                    <!-- Price Comparison Table with Apple-style mobile scroll behavior -->
+                    <div class="pricing-comparison-container relative mb-12 reveal-element bg-white dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden">
+                        <!-- Mobile swipe hint removed -->
+                        
+                        <!-- Scroll container with snap behavior (mobile only) -->
+                        <div class="pricing-table-scroll-wrapper snap-x snap-mandatory md:snap-none overflow-x-auto md:overflow-visible hide-scrollbar">
+                            <!-- Table wrapper to maintain structure -->
+                            <div class="pricing-table-inner w-full md:w-full min-w-max md:min-w-0">
+                        <table class="w-full min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                            <thead class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        Feature
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        <div class="text-primary-600 font-bold">Start</div>
+                                        <div class="mt-1">499,79 kr</div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider bg-primary-50 dark:bg-gray-700">
+                                        <div class="text-primary-600 font-bold">Pro</div>
+                                        <div class="mt-1">1.499,79 kr</div>
+                                        <div class="bg-primary-600 text-white text-xs px-2 py-1 rounded-full mt-1 inline-block">Populær</div>
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                                        <div class="text-primary-600 font-bold">Full</div>
+                                        <div class="mt-1">2.499,79 kr</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white dark:bg-gray-900 divide-y divide-gray-200 dark:divide-gray-700">
+                                <!-- Responsive Design -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Responsivt Design
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Antal sider -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Antal sider
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Op til 3 sider
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        Op til 8 sider
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Ubegrænset
+                                    </td>
+                                </tr>
+                                
+                                <!-- Kontaktformular -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Kontaktformular
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Basis formular
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        Avanceret formular
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Fuldt tilpasset
+                                    </td>
+                                </tr>
+                                
+                                <!-- Animationer -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Animationer
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Basale
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        Flydende
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Premium
+                                    </td>
+                                </tr>
+                                
+                                <!-- SEO Optimering -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        SEO Optimering
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        Basis
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Fuld
+                                    </td>
+                                </tr>
+                                
+                                <!-- E-commerce funktioner -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        E-commerce funktioner
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Social media integration -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Social Media Integration
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Basis
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        Standard
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        Avanceret
+                                    </td>
+                                </tr>
+                                
+                                <!-- Hosting inkluderet -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Hosting (1 år)
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Domain inkluderet -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Domæne
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        <i class="fas fa-times text-gray-400"></i>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <i class="fas fa-check text-primary-600"></i>
+                                    </td>
+                                </tr>
+                                
+                                <!-- Support og vedligeholdelse -->
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        Support og vedligeholdelse
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        30 dage
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        6 måneder
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        12 måneder
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="bg-gray-50 dark:bg-gray-800">
+                                <tr>
+                                    <td class="px-6 py-4 text-sm font-medium">
+                                        
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <a href="index.html#contact" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition text-sm">
+                                            Vælg pakke
+                                        </a>
+                                    </td>
+                                    <td class="px-6 py-4 text-center bg-primary-50 dark:bg-gray-700">
+                                        <a href="index.html#contact" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition text-sm font-medium">
+                                            Vælg pakke
+                                        </a>
+                                    </td>
+                                    <td class="px-6 py-4 text-center">
+                                        <a href="index.html#contact" class="inline-block bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition text-sm">
+                                            Vælg pakke
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                            </div>
+                        </div>
+                        
+                        <!-- Scroll Indicator for Apple-style scrolling (mobile only) -->
+                        <div class="scroll-indicator-container hidden md:hidden mt-4 mx-auto w-4/5 max-w-xs">
+                            <div class="scroll-indicator-track h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full">
+                                <div class="scroll-indicator-progress h-full w-1/3 bg-primary-600 rounded-full transition-all duration-150"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Costs Information -->
+                    <div class="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-2xl shadow-md p-8 reveal-element">
+                        <h2 class="text-2xl font-bold mb-6 text-primary-600">Mulige tillægsomkostninger</h2>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">
+                            Vær opmærksom på, at følgende ydelser kan medføre ekstra omkostninger, da de involverer tredjepartstjenester. 
+                            Disse omkostninger går ikke til Web14All, men er nødvendige for at sikre, at din hjemmeside kører optimalt og sikkert.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <!-- Custom Domains -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h3 class="text-lg font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-globe text-primary-600 mr-2"></i>
+                                    Custom Domains
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    Et domæne er din hjemmesides adresse, som f.eks. www.eksempel.dk.
+                                    Disse omkostninger dækker køb og vedligeholdelse af domænet gennem domæneregistratorer.
+                                    Dette er ikke betalinger til Web14All, men gebyrer opkrævet af tredjepartsudbydere.
+                                    Domæner har normalt årlige abonnements- eller fornyelsesgebyrer.
+                                </p>
+                            </div>
+                            
+                            <!-- Email Marketing -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h3 class="text-lg font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-envelope-open-text text-primary-600 mr-2"></i>
+                                    Automatiserede Email Marketing Services
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    Til afsendelse af kampagnemails, rabatter, nyhedsbreve eller meddelelser automatisk til dine kunder, 
+                                    kan ekstra email marketing-værktøjer eller tjenester være nødvendige.
+                                    Disse har ofte månedlige eller årlige abonnementsgebyrer fra tredjepartsudbydere.
+                                </p>
+                            </div>
+                            
+                            <!-- SSL Certificates -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h3 class="text-lg font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-lock text-primary-600 mr-2"></i>
+                                    SSL Certifikater
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    For at sikre din hjemmeside (vise hængelåsikonet i browsere) kræves et SSL-certifikat.
+                                    Nogle certifikater er gratis, men avancerede eller udvidede valideringscertifikater kan have 
+                                    årlige gebyrer fra certifikatmyndigheder.
+                                </p>
+                            </div>
+                            
+                            <!-- Hosting -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h3 class="text-lg font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-server text-primary-600 mr-2"></i>
+                                    Website Hosting og Båndbredde-overforbrug
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    Mens grundlæggende hosting kan være inkluderet, kan der påløbe yderligere hostinggebyrer, 
+                                    hvis din hjemmeside bruger meget båndbredde eller ressourcer.
+                                </p>
+                            </div>
+                            
+                            <!-- Maintenance -->
+                            <div class="p-4 bg-gray-50 dark:bg-gray-800 rounded-xl">
+                                <h3 class="text-lg font-semibold mb-2 flex items-center">
+                                    <i class="fas fa-tools text-primary-600 mr-2"></i>
+                                    Vedligeholdelsesabonnement
+                                </h3>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    En valgfri årlig vedligeholdelsesplan kan dække mindre opdateringer, backups og fejlrettelser.
+                                    For større eller katastrofale problemer (meget sjældne) kan der påløbe yderligere gebyrer, 
+                                    men vedligeholdelsesplanen hjælper med at forebygge problemer og sikrer problemfri drift.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8 p-4 bg-primary-50 dark:bg-gray-800 rounded-xl border-l-4 border-primary-600">
+                            <p class="text-gray-600 dark:text-gray-300">
+                                <strong class="text-primary-600">Bemærk:</strong> Disse ekstra omkostninger er servicegebyrer opkrævet af tredjeparter, 
+                                nødvendige for at holde hjemmesiden kørende, sikker og effektiv. 
+                                De repræsenterer ikke gebyrer betalt til Web14All, som kun opkræver for sine design- og udviklingstjenester.
+                                Du er altid velkommen til at kontakte Web14All med eventuelle spørgsmål om priser, domæner, 
+                                vedligeholdelse eller ekstra gebyrer. Vi sikrer fuld gennemsigtighed og tillid.
+                            </p>
+                        </div>
+                        
+                        <div class="mt-8 text-center">
+                            <a href="index.html#contact" class="inline-flex items-center justify-center bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-lg font-medium transition">
+                                <i class="fas fa-envelope mr-2"></i>
+                                Kontakt os med dine spørgsmål
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-900 text-gray-800 dark:text-white pt-12 pb-8 transition-colors duration-300">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-8">
+                    <a href="index.html" class="text-xl font-bold text-primary-600">Web14All</a>
+                    <p class="text-gray-600 dark:text-gray-400 mt-2">Professionelt webdesign og programmering til overkommelige priser</p>
+                </div>
+                
+                <div class="flex justify-center space-x-4 mb-8">
+                    <a href="index.html#services" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Services</a>
+                    <a href="index.html#examples" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Eksempler</a>
+                    <a href="index.html#why-choose" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Hvorfor vælge os</a>
+                    <a href="index.html#pricing" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Priser</a>
+                    <a href="index.html#contact" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition">Kontakt</a>
+                </div>
+                
+                <div class="border-t border-gray-200 dark:border-gray-800 pt-8 text-center">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        &copy; 2025 Web14All. Alle rettigheder forbeholdes.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
