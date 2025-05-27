@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Web14All</title>
+    <link rel="stylesheet" href="css/tailwind.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-sans antialiased text-gray-800 dark:text-gray-200 transition-colors duration-300 bg-gray-100 dark:bg-gray-900">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="sticky top-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-sm">
+            <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+                <a href="index.html" class="flex items-center space-x-2">
+                    <span class="text-xl font-bold text-primary-600">Web14All</span>
+                </a>
+                
+                <div class="flex items-center space-x-4">
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <svg id="sun-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                        <svg id="moon-icon" class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                    </button>
+                    <button id="logout-button" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition shadow-md hidden">
+                        Log ud
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Login Section -->
+            <div id="login-section" class="container mx-auto px-4 py-12 md:py-24">
+                <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-8">
+                    <h2 class="text-2xl font-bold text-center mb-6">Admin Login</h2>
+                    <p class="text-center mb-6">Log ind for at få adgang til admin-funktioner</p>
+                    
+                    <div class="flex justify-center">
+                        <button id="google-login" class="flex items-center justify-center space-x-2 bg-white dark:bg-gray-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 px-6 py-3 rounded-md shadow-sm hover:shadow-md transition">
+                            <svg class="h-5 w-5" viewBox="0 0 24 24">
+                                <path fill="#4285F4" d="M12 5c1.617 0 3.071.54 4.263 1.43l3.401-3.401C17.452 1.01 14.853 0 12 0 7.333 0 3.39 2.667 1.333 6.667l3.94 3.071C6.667 6.23 9.333 5 12 5z"></path>
+                                <path fill="#34A853" d="M5 12c0-.753.12-1.478.326-2.167L1.333 6.667C.48 8.318 0 10.147 0 12c0 1.853.48 3.682 1.333 5.333l3.94-3.07C5.12 13.477 5 12.753 5 12z"></path>
+                                <path fill="#FBBC05" d="M12 19c-2.667 0-5.333-1.23-6.727-4.73l-3.94 3.071C3.39 21.333 7.333 24 12 24c2.853 0 5.452-1.01 7.667-2.667l-3.45-2.667C15.05 18.55 13.62 19 12 19z"></path>
+                                <path fill="#EA4335" d="M23.76 12.226c0-.823-.07-1.612-.2-2.388H12v4.526h6.603c-.298 1.57-1.179 2.913-2.53 3.814l3.45 2.667c2.011-1.86 3.177-4.598 3.177-8.62z"></path>
+                            </svg>
+                            <span>Log ind med Google</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Access Denied Section -->
+            <div id="access-denied" class="container mx-auto px-4 py-12 md:py-24 hidden">
+                <div class="max-w-md mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-md p-8 text-center">
+                    <div class="text-red-500 mb-4">
+                        <i class="fas fa-exclamation-circle text-5xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-4">Adgang nægtet</h2>
+                    <p class="mb-6">Du har ikke tilladelse til at se denne side. Kun administratorer har adgang.</p>
+                    <button id="back-to-home" class="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-full transition shadow-md">
+                        Tilbage til forsiden
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Dashboard -->
+            <div id="admin-dashboard" class="container mx-auto px-4 py-8 hidden">
+                <h1 class="text-3xl font-bold mb-8 text-center">Admin Dashboard</h1>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8">
+                    <h2 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-envelope mr-2 text-primary-600"></i>
+                        Beskedoversigt
+                    </h2>
+                    
+                    <div id="message-list" class="space-y-6">
+                        <!-- Messages will be dynamically loaded here -->
+                        <div class="text-center py-10 text-gray-500 dark:text-gray-400">
+                            <i class="fas fa-spinner fa-spin text-2xl mb-3"></i>
+                            <p>Indlæser beskeder...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template Response Modal -->
+            <div id="template-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-semibold">Vælg svartemplate</h3>
+                        <button id="close-template-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button class="template-button w-full text-left px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" data-template="price">
+                            Prisspørgsmål
+                        </button>
+                        <button class="template-button w-full text-left px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" data-template="offer">
+                            Tilbud
+                        </button>
+                        <button class="template-button w-full text-left px-4 py-3 rounded-md bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition" data-template="thanks">
+                            Tak for besked
+                        </button>
+                    </div>
+
+                    <div id="template-content" class="mt-6 p-4 bg-gray-50 dark:bg-gray-900 rounded-md hidden">
+                        <p id="template-text" class="mb-4"></p>
+                        <button id="copy-template" class="w-full bg-primary-600 hover:bg-primary-700 text-white px-4 py-3 rounded-md transition shadow-md flex items-center justify-center">
+                            <i class="fas fa-copy mr-2"></i>
+                            Kopier svar
+                        </button>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">
+                            Husk at sende manuelt fra info@web14all.dk
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 py-8 mt-12">
+            <div class="container mx-auto px-4">
+                <div class="border-t border-gray-200 dark:border-gray-800 pt-8">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 md:mb-0">
+                            &copy; 2025 Web14All. Alle rettigheder forbeholdes.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Firebase SDK (already in the project) -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyCbTas1Z7U4CZO3KKSTtQB6mf1YluA6zn0",
+            authDomain: "web14all.firebaseapp.com",
+            projectId: "web14all",
+            storageBucket: "web14all.firebasestorage.app",
+            messagingSenderId: "123643116831",
+            appId: "1:123643116831:web:e9bfb1e74378af8129042a",
+            measurementId: "G-PKM8LME1E0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth();
+        const db = getFirestore(app);
+
+        // DOM elements
+        const loginSection = document.getElementById('login-section');
+        const accessDenied = document.getElementById('access-denied');
+        const adminDashboard = document.getElementById('admin-dashboard');
+        const googleLoginButton = document.getElementById('google-login');
+        const logoutButton = document.getElementById('logout-button');
+        const backToHomeButton = document.getElementById('back-to-home');
+        const messageList = document.getElementById('message-list');
+        const templateModal = document.getElementById('template-modal');
+        const closeTemplateModal = document.getElementById('close-template-modal');
+        const templateButtons = document.querySelectorAll('.template-button');
+        const templateContent = document.getElementById('template-content');
+        const templateText = document.getElementById('template-text');
+        const copyTemplateButton = document.getElementById('copy-template');
+
+        // Template responses
+        const templates = {
+            price: "Kære kunde, priserne varierer afhængigt af behov. Kan du fortælle mere om dit projekt, så jeg kan give dig et mere præcist tilbud? Vi tilbyder forskellige pakker baseret på kompleksitet og omfang.",
+            offer: "Vi tilbyder pt. en introduktionspakke som inkluderer responsivt website design, grundlæggende SEO-optimering, og gratis hosting i 3 måneder. Kontakt os for at høre mere om denne særlige mulighed.",
+            thanks: "Tusind tak for din henvendelse. Vi vender tilbage hurtigst muligt og senest inden for 24 timer på hverdage. Vi sætter stor pris på din interesse for vores services."
+        };
+
+        // Check if user is admin
+        const checkIfAdmin = (user) => {
+            if (user && user.email === "azizsultoni798@gmail.com") {
+                loginSection.classList.add('hidden');
+                accessDenied.classList.add('hidden');
+                adminDashboard.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+                
+                // Load messages
+                loadMessages();
+            } else {
+                loginSection.classList.add('hidden');
+                adminDashboard.classList.add('hidden');
+                accessDenied.classList.remove('hidden');
+                logoutButton.classList.remove('hidden');
+            }
+        };
+
+        // Auth state change listener
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                checkIfAdmin(user);
+            } else {
+                loginSection.classList.remove('hidden');
+                adminDashboard.classList.add('hidden');
+                accessDenied.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+            }
+        });
+
+        // Sign in with Google
+        googleLoginButton.addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then((result) => {
+                    // Check if user is admin
+                    checkIfAdmin(result.user);
+                }).catch((error) => {
+                    console.error("Error signing in:", error);
+                    alert("Der opstod en fejl ved login. Prøv igen senere.");
+                });
+        });
+
+        // Sign out
+        logoutButton.addEventListener('click', () => {
+            signOut(auth).then(() => {
+                loginSection.classList.remove('hidden');
+                adminDashboard.classList.add('hidden');
+                accessDenied.classList.add('hidden');
+                logoutButton.classList.add('hidden');
+            }).catch((error) => {
+                console.error("Error signing out:", error);
+            });
+        });
+
+        // Back to home
+        backToHomeButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+
+        // Load messages from Firestore
+        const loadMessages = async () => {
+            try {
+                messageList.innerHTML = '<div class="text-center py-10 text-gray-500 dark:text-gray-400"><i class="fas fa-spinner fa-spin text-2xl mb-3"></i><p>Indlæser beskeder...</p></div>';
+                
+                const messagesRef = collection(db, "messages");
+                const q = query(messagesRef, orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
+                
+                if (querySnapshot.empty) {
+                    messageList.innerHTML = '<div class="text-center py-10 text-gray-500 dark:text-gray-400"><p>Ingen beskeder fundet</p></div>';
+                    return;
+                }
+                
+                let messagesHTML = '';
+                
+                querySnapshot.forEach((doc) => {
+                    const message = doc.data();
+                    const date = message.timestamp ? new Date(message.timestamp.seconds * 1000) : new Date();
+                    const formattedDate = date.toLocaleDateString('da-DK', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    messagesHTML += `
+                        <div class="message-card bg-gray-50 dark:bg-gray-700 rounded-lg p-5 transition-all duration-300 hover:shadow-md" data-id="${doc.id}">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="font-semibold text-lg">${message.name}</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">
+                                        <a href="mailto:${message.email}" class="hover:text-primary-600 transition">${message.email}</a>
+                                    </p>
+                                </div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">${formattedDate}</span>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <h4 class="font-medium text-primary-600">${message.subject}</h4>
+                                <p class="mt-2 text-gray-700 dark:text-gray-300 whitespace-pre-line">${message.message}</p>
+                            </div>
+                            
+                            <button class="reply-template-btn bg-primary-600 hover:bg-primary-700 text-white px-3 py-1 rounded-md text-sm transition shadow-sm flex items-center" data-id="${doc.id}">
+                                <i class="fas fa-reply mr-1"></i>
+                                Svar med template
+                            </button>
+                        </div>
+                    `;
+                });
+                
+                messageList.innerHTML = messagesHTML;
+                
+                // Add event listeners to reply buttons
+                document.querySelectorAll('.reply-template-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        templateModal.classList.remove('hidden');
+                    });
+                });
+                
+            } catch (error) {
+                console.error("Error loading messages:", error);
+                messageList.innerHTML = '<div class="text-center py-10 text-red-500"><p>Der opstod en fejl ved indlæsning af beskeder</p></div>';
+            }
+        };
+
+        // Template modal functionality
+        closeTemplateModal.addEventListener('click', () => {
+            templateModal.classList.add('hidden');
+            templateContent.classList.add('hidden');
+        });
+
+        templateButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const templateType = button.getAttribute('data-template');
+                templateText.textContent = templates[templateType];
+                templateContent.classList.remove('hidden');
+            });
+        });
+
+        copyTemplateButton.addEventListener('click', () => {
+            const textToCopy = templateText.textContent;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const originalText = copyTemplateButton.innerHTML;
+                copyTemplateButton.innerHTML = '<i class="fas fa-check mr-2"></i> Kopieret!';
+                setTimeout(() => {
+                    copyTemplateButton.innerHTML = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                alert('Kunne ikke kopiere teksten. Prøv venligst igen.');
+            });
+        });
+    </script>
+</body>
+</html>
